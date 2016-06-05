@@ -14,6 +14,21 @@ To implement this, I let the user enter how many obstacles, and randomly dispers
 
 ### Using the program
 
-1. Enter the destination coordinates of the robot (r, c).
-2. Enter how many obstacles you'd like to throw in.
-3. See if there is a path available.
+1. Run the interpreter
+
+```bash
+python3 backtrack.py
+```
+
+2. Give the robot its destination coordinates, and decide how many obstacles you want to place
+
+<img src=http://imgur.com/SVmF7zs>
+
+3. Press enter to see the board, and wait for the robot to find a path
+
+<img src=http://imgur.com/jpsqRNp>
+
+4. Check out your robot's path
+
+<img src=http://imgur.com/uzFHErd>
+
