@@ -20,7 +20,7 @@ To implement this, I let the user enter how many obstacles, and randomly dispers
 
 Clone the git repo
 
-```bash
+```
 git clone https://github.com/reeddunkle/Backtrack_Robot.git
 ```
 
@@ -28,13 +28,13 @@ git clone https://github.com/reeddunkle/Backtrack_Robot.git
 
 Navigate to the repo
 
-```bash
+```
 cd Backtrack_Robot
 ```
 
 Run the interpreter
 
-```bash
+```
 python3 backtrack.py
 ```
 
