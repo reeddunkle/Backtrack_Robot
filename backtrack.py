@@ -25,6 +25,7 @@ def possible_directions(row, col, obstacles):
         dirs.append((row, col-1))
     if row > 0 and (row-1, col) not in obstacles:
         dirs.append((row-1, col))
+
     return dirs
 
 
@@ -36,6 +37,7 @@ def find_path(row, col, destination_row, destination_column, obstacles):
     else:
         for coordinance in possible_directions(row, col, obstacles):
             r, c = coordinance
+
             if r == 0 and c == 0:
                 return [(0, 0)]
 
@@ -44,11 +46,12 @@ def find_path(row, col, destination_row, destination_column, obstacles):
                 final = solution + [(r, c)]
                 if row == destination_row and col == destination_column:
                     final += [(row, col)]
+
                 return final
 
 
 def create_board(number_of_rows, number_of_columns, obstacles):
-    '''Returns an array representation of the board.'''
+    """Returns an array representation of the board."""
 
     board = []
     for r in range(number_of_rows + 1):
@@ -58,6 +61,7 @@ def create_board(number_of_rows, number_of_columns, obstacles):
                 board[r].append(OBSTACLE_CHAR)
             else:
                 board[r].append(EMPTY_CHAR)
+
     return board
 
 
@@ -74,6 +78,7 @@ def coords_to_english(path):
             path_english.append(DOWN)
 
     path_english.append(DESTINATION)
+
     return path_english
 
 
@@ -137,12 +142,10 @@ def get_destination():
 
     prompt = "What are the coordinates of your robot's destination?\nExample: 2,2\n> "
     error_msg = "Sorry. You must enter the destination in the form Row,Column."
-    test = lambda s: len([c for c in s if c.isdigit()]) > 1
+    test = lambda s: len([char for char in s if char.isdigit()]) > 1
 
     user_input = validate_user_input(prompt, error_msg, test)
-    r, c = [c for c in user_input if c.isdigit()][:2]
-    r = int(r)
-    c = int(c)
+    r, c = [int(char) for char in user_input if char.isdigit()][:2]
 
     return (r, c)
 
