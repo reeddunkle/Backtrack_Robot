@@ -19,6 +19,9 @@ def possible_directions(row, col, obstacles):
     """Returns the moves that are legal from the given coordinates."""
 
     dirs = []
+
+    # In case the user sets the robot's destination as (0,0),
+    # this adds their destination to the path.
     if row == 0 and col == 0:
         dirs.append((0, 0))
     if col > 0 and (row, col-1) not in obstacles:
@@ -32,8 +35,10 @@ def possible_directions(row, col, obstacles):
 def find_path(row, col, destination_row, destination_column, obstacles):
     """The backtrack algorithm -- returns the robot's path."""
 
+    # This ensures that the function returns the complete path even in this base case
     if (destination_row == 0 and destination_column == 1) or (destination_row == 1 and destination_column == 0):
         return [(0, 0), (row, col)]
+
     else:
         for coordinance in possible_directions(row, col, obstacles):
             r, c = coordinance
@@ -234,3 +239,4 @@ if __name__ == '__main__':
     board_with_path = draw_path_to_board(game_board, backtrack_path, dest_row, dest_column)
     board_path_string = char_matrix_to_string(board_with_path)
     play_game(backtrack_path, board_string, board_path_string)
+
