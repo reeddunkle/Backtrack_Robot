@@ -3,6 +3,18 @@ import time
 from random import randint
 os.system('cls' if os.name == 'nt' else 'clear')
 
+DOWN = "Down"
+RIGHT = "Right"
+DESTINATION = "Destination!"
+EMPTY_CHAR = "[ ]"
+OBSTACLE_CHAR = "[X]"
+HOME_CHAR = "[+]"
+DOWN_CHAR = "[|]"
+RIGHT_CHAR = "[-]"
+DESTINATION_CHAR = "[*]"
+DOWN_RIGHT_CHAR = "[{}]".format(chr(8735))
+RIGHT_DOWN_CHAR = "[{}]".format(chr(119317))
+
 def possible_directions(row, col, obstacles):
     """Returns the moves that are legal from the given coordinates."""
 
@@ -43,13 +55,13 @@ def create_board(number_of_rows, number_of_columns, obstacles):
         board.append([])
         for c in range(number_of_columns + 1):
             if (r, c) in obstacles:
-                board[r].append("[X]")
+                board[r].append(OBSTACLE_CHAR)
             else:
-                board[r].append("[ ]")
+                board[r].append(EMPTY_CHAR)
     return board
 
 
-def convert_coords_english(path):
+def coords_to_english(path):
     """Writes the English directions of the robot's path."""
 
     path_english = []
@@ -57,53 +69,56 @@ def convert_coords_english(path):
         r, c = path[i]
         next_r, next_c = path[i+1]
         if c < next_c:
-            path_english.append("Right")
+            path_english.append(RIGHT)
         elif r < next_r:
-            path_english.append("Down")
+            path_english.append(DOWN)
 
-    path_english.append("Destination!")
+    path_english.append(DESTINATION)
     return path_english
 
 
 def draw_path_to_board(board, path, destination_row, destination_column):
     """Draws the robot's path to the board."""
 
+    # Edge case where destination is the same as starting pos
     if destination_row == 0 and destination_column == 0:
-        return ["[+]"]
+        return [HOME_CHAR]
 
     if path:
-        path_english = convert_coords_english(path)
+        path_english = coords_to_english(path)
 
-        board[0][0] = "[|]" if path_english[0] == "Down" else "[-]"
+        board[0][0] = DOWN_CHAR if path_english[0] == DOWN else RIGHT_CHAR
 
-        for i in range(1, -1 + len(path)):
+        for i in range(1, len(path) - 1):
             prev_move = path_english[i-1]
             next_move = path_english[i+1]
             cur_move = path_english[i]
             r, c = path[i]
 
-            if prev_move == "Right" and cur_move == "Down":
-                board[r][c] = "[{}]".format(chr(119317))
-            elif prev_move == "Down" and cur_move == "Right":
-                board[r][c] = "[{}]".format(chr(8735))
-            elif cur_move == "Right":
-                board[r][c] = "[-]"
-            elif cur_move == "Down":
-                board[r][c] = "[|]"
+            if prev_move == RIGHT and cur_move == DOWN:
+                move = RIGHT_DOWN_CHAR
+            elif prev_move == DOWN and cur_move == RIGHT:
+                move = DOWN_RIGHT_CHAR
+            elif cur_move == RIGHT:
+                move = RIGHT_CHAR
+            elif cur_move == DOWN:
+                move = DOWN_CHAR
 
-        board[destination_row][destination_column] = "[*]"
+            board[r][c] = move
+
+        board[destination_row][destination_column] = DESTINATION_CHAR
+
     return board
 
 
-def convert_board_string(board):
+def char_matrix_to_string(board_matrix):
     """Returns a string representation of the board."""
 
     board_string = ""
-    for row in board:
-        row_string = ""
-        for element in row:
-            row_string += element
+    for row in board_matrix:
+        row_string = "".join(row)
         board_string += row_string + "\n"
+
     return board_string
 
 
@@ -136,23 +151,24 @@ def play_game(path, board_string, board_path_string):
     """Displays the game's process to the user."""
 
     print("\nOkay. Right now there are some obstacles...")
-    print("Those squares are marked with an X.\n")
+    print("Those squares are marked with a {}.\n".format(OBSTACLE_CHAR))
     print(board_string)
-    for x in range(2):
-        if x == 0:
-            m = "Looking for a path..."
-            print(m, end="\r")
-            ###time.sleep(2.5)
-        elif path:
-            m = "Looking for a path...Success!!!"
-            m += "\nCheck it out:\n"
-            print(m, end="\r")
-            print(board_path_string)
-        else:
-            m = "Looking for a path...Darn!"
-            m += "\nThere doesn't seem to be a path through the obstacles!\n"
-            print(m, end="\r")
-            print("Such ill-placed obstacles.")
+
+    message = "Looking for a path..."
+    print(message, end="\r")
+    time.sleep(2.2)
+
+    if path:
+        message = "Looking for a path...Success!!!"
+        message += "\nCheck it out:\n"
+        print(message, end="\r")
+        print(board_path_string)
+
+    else:
+        message = "Looking for a path...Darn!"
+        message += "\nThere doesn't seem to be a path through the obstacles!\n"
+        print(message, end="\r")
+        print("Such ill-placed obstacles.")
 
 
 def validate_user_input(prompt, error_msg, test):
@@ -207,11 +223,11 @@ def generate_obstacles(destination_row, destination_column):
 
 if __name__ == '__main__':
     print_introduction()
-    destination_row, destination_column = get_destination()
-    obstacles = generate_obstacles(destination_row, destination_column)
-    game_board = create_board(destination_row, destination_column, obstacles)
-    backtrack_path = find_path(destination_row, destination_column, destination_row, destination_column, obstacles)
-    board_string = convert_board_string(game_board)
-    board_with_path = draw_path_to_board(game_board, backtrack_path, destination_row, destination_column)
-    board_path_string = convert_board_string(board_with_path)
+    dest_row, dest_column = get_destination()
+    obstacles = generate_obstacles(dest_row, dest_column)
+    game_board = create_board(dest_row, dest_column, obstacles)
+    backtrack_path = find_path(dest_row, dest_column, dest_row, dest_column, obstacles)
+    board_string = char_matrix_to_string(game_board)
+    board_with_path = draw_path_to_board(game_board, backtrack_path, dest_row, dest_column)
+    board_path_string = char_matrix_to_string(board_with_path)
     play_game(backtrack_path, board_string, board_path_string)
