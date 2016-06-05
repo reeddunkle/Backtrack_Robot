@@ -30,5 +30,5 @@ python3 backtrack.py
 
 4. Check out your robot's path
 
-<img src=http://i.imgur.com/uzFHErd.png>
+<img src=http://i.imgur.com/VZu1eyq.png>
 
