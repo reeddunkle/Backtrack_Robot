@@ -21,7 +21,7 @@ To implement this, I let the user enter how many obstacles, and randomly dispers
 Clone the git repo
 
 ```bash
-https://github.com/reeddunkle/Backtrack_Robot.git
+git clone https://github.com/reeddunkle/Backtrack_Robot.git
 ```
 
 ### Testing
