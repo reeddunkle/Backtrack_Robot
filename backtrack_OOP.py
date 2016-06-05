@@ -1,5 +1,5 @@
 """
-backtrack_OOP.py
+backtrack2.py
 -------------
 Converting backtrack to OOP:
 """
@@ -26,6 +26,8 @@ RIGHT_DOWN_CHAR = "[{}]".format(chr(119317))
 
 
 
+
+# class UserInputValidator(object):
 
 
 
@@ -92,7 +94,7 @@ class Board(object):
         """Gets coordinates from the user for the robot's destination."""
 
         prompt_r = "Which row number is your robot's destination?\n(Starting from 0)\n> "
-        prompt_c = "Which column number is your robot's destination?(Starting from 0)\n> "
+        prompt_c = "Which column number is your robot's destination?\n(Starting from 0)\n> "
         error_msg = "Sorry. You must enter a number which is less than 32."
         test = lambda s: s.isdigit() and int(s) <= 32
 
@@ -344,7 +346,4 @@ if __name__ == '__main__':
     clear_screen()
     board.display()
     print_final_message(path)
-
-
-
 
