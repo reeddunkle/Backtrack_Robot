@@ -26,7 +26,7 @@ python3 backtrack.py
 
 3. Press enter to see the board, and wait for the robot to find a path
 
-<img src=http://imgur.com/jpsqRNp>
+<img src=http://imgur.com/jpsqRNp.png>
 
 4. Check out your robot's path
 
