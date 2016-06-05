@@ -22,7 +22,7 @@ python3 backtrack.py
 
 2. Give the robot its destination coordinates, and decide how many obstacles you want to place
 
-<img src=http://imgur.com/SVmF7zs>
+[Imgur](http://i.imgur.com/SVmF7zs.png)
 
 3. Press enter to see the board, and wait for the robot to find a path
 
