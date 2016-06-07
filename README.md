@@ -32,7 +32,7 @@ Navigate to the repo
 cd Backtrack_Robot
 ```
 
-Run the interpreter
+Run the Python3 interpreter
 
 ```
 python3 backtrack.py
