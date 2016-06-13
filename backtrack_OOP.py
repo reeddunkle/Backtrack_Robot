@@ -1,5 +1,5 @@
 """
-backtrack2.py
+backtrack_OOP.py
 -------------
 Converting backtrack to OOP:
 """
@@ -146,6 +146,13 @@ class Board(object):
                 current_obstacles += 1
 
 
+    def memoize(self, cur_row, cur_col):
+        """Caches squares that prove to not lead anywhere to avoid re-visiting them."""
+
+        self.squares[cur_row][cur_col].failed = True
+        self.squares[cur_row][cur_col].face = FAILED  # Shouldn't have set face here
+        self.obstacles.append(self.squares[cur_row][cur_col])
+
 
     def find_path(self):
         """Finds path from (0,0) to (self.dest_r, self.dest_c)"""
@@ -164,9 +171,7 @@ class Board(object):
 
             # Memoization to cache previously failed coordinates
             if len(possible_dirs) == 0:
-                self.squares[cur_row][cur_col].failed = True
-                self.squares[cur_row][cur_col].face = FAILED  # Shouldn't have set face here
-                self.obstacles.append(self.squares[cur_row][cur_col])
+                self.memoize(cur_row, cur_col)
 
             for coordinance in possible_dirs:
                 r, c = coordinance
@@ -181,6 +186,15 @@ class Board(object):
                         final += [(cur_row, cur_col)]
 
                     return final
+
+                else:
+                    possible_dirs = possible_directions(r, c, self.obstacles)
+
+                    if len(possible_dirs) == 0:
+                        # self.memoize(r, c)
+                        self.squares[cur_row][cur_col].failed = True
+                        self.squares[cur_row][cur_col].face = "[^]"
+                        self.obstacles.append(self.squares[cur_row][cur_col])
 
 
     def _coords_to_english(self, path):
