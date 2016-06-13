@@ -18,11 +18,11 @@ DESTINATION = "Destination!"
 EMPTY_CHAR = "[ ]"
 OBSTACLE_CHAR = "[X]"
 HOME_CHAR = "[+]"
+DESTINATION_CHAR = "[*]"
 DOWN_CHAR = "[|]"   # From up going down
 RIGHT_CHAR = "[-]"  # From left going right
-DESTINATION_CHAR = "[*]"
-DOWN_RIGHT_CHAR = "[{}]".format(chr(8735))
-RIGHT_DOWN_CHAR = "[{}]".format(chr(119317))
+DOWN_RIGHT_CHAR = "[{}]".format(chr(8735))  # From up going right
+RIGHT_DOWN_CHAR = "[{}]".format(chr(119317))  # From left going down
 
 
 
@@ -159,7 +159,14 @@ class Board(object):
             return [(0, 0), (self.dest_r, self.dest_c)]
 
         else:
-            for coordinance in possible_directions(cur_row, cur_col, self.obstacles):
+            possible_dirs = possible_directions(cur_row, cur_col, self.obstacles)
+
+            # Memoization to cache previously failed coordinates
+            if len(possible_dirs) == 0:
+                self.squares[cur_row][cur_col].obstacle = True
+                self.obstacles.append(self.squares[cur_row][cur_col])
+
+            for coordinance in possible_dirs:
                 r, c = coordinance
 
                 if r == 0 and c == 0:
