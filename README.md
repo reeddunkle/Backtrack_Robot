@@ -35,7 +35,7 @@ cd Backtrack_Robot
 Run the Python3 interpreter
 
 ```
-python3 backtrack.py
+python3 backtrack_OOP.py
 ```
 
 #### Give the robot its destination coordinates, and decide how many obstacles you want to place
