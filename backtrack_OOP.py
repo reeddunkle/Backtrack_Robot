@@ -17,7 +17,7 @@ RIGHT = "Right"
 DESTINATION = "Destination!"
 EMPTY_CHAR = "[ ]"
 OBSTACLE_CHAR = "[X]"
-FAILED = "[$$$@#)$(*&#$^)]"
+FAILED = "[$]"
 HOME_CHAR = "[+]"
 DESTINATION_CHAR = "[*]"
 DOWN_CHAR = "[|]"   # From up going down
@@ -164,8 +164,8 @@ class Board(object):
 
             # Memoization to cache previously failed coordinates
             if len(possible_dirs) == 0:
-                print("!!!!!!!!!!!!!!!!!!!!!!!!!!!")
                 self.squares[cur_row][cur_col].failed = True
+                self.squares[cur_row][cur_col].face = FAILED  # Shouldn't have set face here
                 self.obstacles.append(self.squares[cur_row][cur_col])
 
             for coordinance in possible_dirs:
@@ -290,7 +290,7 @@ class Square(object):
     @face.setter
     def face(self, new_face):
 
-        if not self.obstacle and not self.failed:
+        if not self.obstacle:
             self._face = new_face
 
         else:
