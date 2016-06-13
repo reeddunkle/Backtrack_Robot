@@ -1,4 +1,4 @@
-# Backtrack_Robot
+# Backtrack Robot
 Implementation of the Backtrack algorithm; Exercise in Refactoring
 
 ### The scenario
@@ -12,29 +12,25 @@ There are obstacles!
 
 To implement this, I let the user enter how many obstacles, and randomly disperse them throughout the game board.
 
+Installation
 ----
 
-## Using the program
-
-Installation
-------------
-
-Clone the git repo
+Clone the git repo:
 
 ```
 git clone https://github.com/reeddunkle/Backtrack_Robot.git
 ```
 
 Testing
--------
+----
 
-Navigate to the repo
+Navigate to the repo:
 
 ```
 cd Backtrack_Robot
 ```
 
-Run the Python3 interpreter
+Run it with the Python3 interpreter:
 
 ```
 python3 backtrack_OOP.py
