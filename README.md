@@ -14,9 +14,10 @@ To implement this, I let the user enter how many obstacles, and randomly dispers
 
 ----
 
-# Using the program
+## Using the program
 
-### Installation
+Installation
+------------
 
 Clone the git repo
 
@@ -24,7 +25,8 @@ Clone the git repo
 git clone https://github.com/reeddunkle/Backtrack_Robot.git
 ```
 
-### Testing
+Testing
+-------
 
 Navigate to the repo
 
@@ -38,15 +40,18 @@ Run the Python3 interpreter
 python3 backtrack_OOP.py
 ```
 
-#### Give the robot its destination coordinates, and decide how many obstacles you want to place
+Give the robot its destination coordinates, and decide how many obstacles you want to place
+----
 
 <img src=http://i.imgur.com/SVmF7zs.png>
 
-#### Press enter to see the board, and wait for the robot to find a path
+Press enter to see the board, and wait for the robot to find a path
+----
 
 <img src=http://imgur.com/jpsqRNp.png>
 
-#### Check out your robot's path
+Check out your robot's path
+----
 
 <img src=http://i.imgur.com/VZu1eyq.png>
 
