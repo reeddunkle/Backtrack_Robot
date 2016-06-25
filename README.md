@@ -27,7 +27,7 @@ She can only move DOWN and to the RIGHT. Determine her path from (0,0) to (r,c).
 
 There are obstacles!
 
-To implement this, I let the user enter how many obstacles, and randomly disperse them throughout the game board.
+To implement this, the user enters a number of obstacles to be randomly dispersed throughout the game board.
 
 
 Installation
