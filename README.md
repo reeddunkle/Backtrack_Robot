@@ -1,21 +1,17 @@
 # Backtrack Robot
 A backtracking algorithm employing memoization
 
+<img src="http://i.imgur.com/ZmFTiww.gif" />
 
-Give the robot its destination coordinates, and decide how many obstacles you want to place
-----
+1. Give the robot its destination coordinates, and decide how many obstacles you want to place
 
-<img src=http://i.imgur.com/SVmF7zs.png>
+2. Press enter to see the board, and wait for the robot to find a path
 
-Press enter to see the board, and wait for the robot to find a path
-----
+3. Check out your robot's path!
 
-<img src=http://imgur.com/jpsqRNp.png>
+**Note**:
 
-Check out your robot's path!
-----
-
-<img src=http://i.imgur.com/VZu1eyq.png>
+- The chevrons ^ denote the memoized squares
 
 
 ### The scenario
