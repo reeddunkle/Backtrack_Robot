@@ -1,5 +1,5 @@
 # Backtrack Robot
-A backtracking algorithm employing memoization
+A backtracking algorithm employing memoization*
 
 <img src="http://i.imgur.com/ZmFTiww.gif" />
 
@@ -9,9 +9,8 @@ A backtracking algorithm employing memoization
 
 3. Check out your robot's path!
 
-**Note**:
 
-- The chevrons ^ denote the memoized squares
+*The chevrons ^ denote the memoized squares
 
 
 ### The scenario
